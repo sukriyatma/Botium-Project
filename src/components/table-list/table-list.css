@@ -1,0 +1,20 @@
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+table.table-list, td.table-data {
+    border-collapse: collapse;
+}
+
+td.table-data {
+    border: 1px solid #1F1F2B;
+}
+
+table.table-list {
+    width: 100%;
+    background-color: #14141A;
+}
+
+/* style={{width: '90%', height: 'auto', maxHeight: '70%', backgroundColor: '#14141A', borderRadius: '15px', marginTop: '2vw'}} */

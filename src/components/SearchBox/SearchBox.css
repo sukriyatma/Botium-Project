@@ -1,0 +1,9 @@
+
+input {
+    color: aliceblue;
+    padding-left: 20px;
+}
+
+input:focus {
+    outline: none;
+}
