@@ -17,4 +17,21 @@ table.table-list {
     background-color: #14141A;
 }
 
+::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+    
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #E6E6E6;
+}
+
 /* style={{width: '90%', height: 'auto', maxHeight: '70%', backgroundColor: '#14141A', borderRadius: '15px', marginTop: '2vw'}} */

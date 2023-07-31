@@ -14,7 +14,7 @@ export default function SearchBox(props) {
                     </clipPath>
                 </defs>
             </svg>
-            <input type="text" placeholder="Search" spellCheck='false' style={{width: '100%', height: '100%', borderRadius: '13px', backgroundColor: '#161623', border: 'none', fontFamily: 'Poppins', fontWeight: 500 }}/>
+            <input type="text" placeholder="Search" spellCheck='false' style={{width: '100%', height: '95%', borderRadius: '13px', backgroundColor: '#161623', border: 'none', fontFamily: 'Poppins', fontWeight: 500 }}/>
         </div>
     )
     

@@ -4,7 +4,7 @@ import CircleRadialGradient from "../circle-radial-gradient/circle-radial-gradie
 function StatusCounter(props) {
 
     return (
-        <div className="status-counter" key={props.index} style={{height: '100px', width: '330px', display: 'flex', marginRight: '25px',
+        <div className="status-counter" key={props.index} style={{height: 'uh', width: '330px', display: 'flex', marginRight: '25px',
             backgroundColor: `rgba(46,51,90,0.26)`,
             boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
             borderRadius: '2px',

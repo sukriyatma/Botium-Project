@@ -73,16 +73,16 @@ class BotMonitor extends React.Component {
     render () {
 
         return (
-            <div style={{ width: '80vw', justifyContent: 'start', display: 'flex', flexDirection: 'column', alignItems: 'center', gridColumn: '3', marginTop: '40px'}}>
+            <div style={{ width: '80vw', justifyContent: 'start', display: 'flex', flexDirection: 'column', alignItems: 'center', gridColumn: '3', marginTop: '70px'}}>
 
-                <div style={{display: 'flex', flexDirection: 'row', width: '90%'}}>
+                <div style={{display: 'flex', flexDirection: 'row',width: '90%'}}>
                     <SearchBox/>
                     <Profile />
                 </div>
 
-                <p style={{fontFamily: 'Poppins', fontWeight: 500, fontSize: '25px', marginTop: '50px'}}>BOTS Monitor</p>
+                <p style={{fontFamily: 'Poppins', fontWeight: 500, fontSize: '25px', marginTop: '70px'}}>BOTS Monitor</p>
 
-                <div style={{display: 'flex', marginTop: '10px', width: '90%'}} name="status-bot">
+                <div style={{display: 'flex',marginTop: '10px', width: '90%'}} name="status-bot">
                     {
                         Object.entries(this.state.status).map(([key,value], idxStatus) => {
                                 return <StatusCounter index={idxStatus} name={value.name} color={value.color} total={value.total}/>
