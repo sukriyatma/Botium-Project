@@ -1,5 +1,5 @@
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import StatusCounter from '../../../components/status-counter/status-counter';
 import TableList from '../../../components/table-list/table-list';
 import ListName from '../../../components/list-name/list-name';
@@ -9,6 +9,8 @@ import Profile from '../../../components/Profile/Profile';
 
 class BotMonitor extends React.Component {  
 
+    listBot = []
+
     constructor(props) {
         super(props)
         this.state = {
@@ -17,26 +19,31 @@ class BotMonitor extends React.Component {
                 'OFFLINE' :{ name: "Offline", color: "#C1C1C1", total : 0},
                 'BAN' : { name: "Banned", color: "#E75858", total : 0}},
             list : [],
-            activeData : null,
-            rows: []
+            idxSelectedBot : null,
+            selectedBotDetails : []
         }
 
         this.setOnActive = this.setOnActive.bind(this)
+        this.changeListBotByStatusCounter = this.changeListBotByStatusCounter.bind(this)
     }
     
     // Function to get data from database
     getData() {
-        this.setState({
-            list : [
-                {name: 'BotAsu1', status: 'ONLINE', world2: 'world1', world3: 'world1', world4: 'world1'},
-                {name: 'BotPemadam5', status: 'OFFLINE', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-                {name: 'Botasli', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-                {name: 'BotPemadam5', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-                {name: 'Botasli', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-                {name: 'BotPemadam5', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-                
-            ] 
-        }, async () => {
+
+        const data = [
+            {name: 'BotAsu1', status: 'ONLINE', world2: 'world1', world3: 'world1', world4: 'world1', world5: 'world1', world6: 'world1', world7: 'world1'},
+            {name: 'BotPemadam5', status: 'OFFLINE', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
+            {name: 'Botasli', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
+            {name: 'BotPemadam5', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
+            {name: 'Botasli', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
+            {name: 'BotPemadam5', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
+            {name: 'BotOnline', status: 'ONLINE', world2: 'world1', world3: 'world1', world4: 'world1'},
+        ]
+
+        this.listBot = data
+        this.setState(
+            {list : data}, 
+            async () => {
             const {list, status} = this.state
             const stat = status
             Object.values(stat).forEach(v=>(v.total=0))
@@ -48,22 +55,33 @@ class BotMonitor extends React.Component {
 
     setOnActive(index) {
         this.setState({
-            activeData: index
+            idxSelectedBot: index
         }, () => {
 
-            const {list, activeData} = this.state
-            const rows = []
+            const {list, idxSelectedBot} = this.state
+            const selectedBotDetails = []
 
-            for (let i=0;i<Object.entries(list[activeData]).length; i+=3) {
-                const row = Object.entries(list[activeData]).slice(i, i+3)
-                rows.push(row)
+            for (let i=0;i<Object.entries(list[idxSelectedBot]).length; i+=3) {
+                const row = Object.entries(list[idxSelectedBot]).slice(i, i+3)
+                selectedBotDetails.push(row)
             }
             
             this.setState({
-                rows: rows
+                selectedBotDetails: selectedBotDetails
             })
             
         })
+    }
+
+    changeListBotByStatusCounter(status) {
+        const botByStatusCounter = []
+        for (let list of this.listBot) {
+            if (list.status === status) {
+                botByStatusCounter.push(list)
+            }
+        }
+
+        this.setState({list:botByStatusCounter})
     }
 
     componentDidMount() {
@@ -77,7 +95,7 @@ class BotMonitor extends React.Component {
 
                 <div style={{display: 'flex', flexDirection: 'row',width: '90%'}}>
                     <SearchBox/>
-                    <Profile />
+                    <Profile userName={this.props.userName}/>
                 </div>
 
                 <p style={{fontFamily: 'Poppins', fontWeight: 500, fontSize: '25px', marginTop: '70px'}}>BOTS Monitor</p>
@@ -85,7 +103,7 @@ class BotMonitor extends React.Component {
                 <div style={{display: 'flex',marginTop: '10px', width: '90%'}} name="status-bot">
                     {
                         Object.entries(this.state.status).map(([key,value], idxStatus) => {
-                                return <StatusCounter index={idxStatus} name={value.name} color={value.color} total={value.total}/>
+                                return <StatusCounter index={idxStatus} id={key} name={value.name} color={value.color} total={value.total} changeListBotByStatusCounter={this.changeListBotByStatusCounter}/>
                         })
                     }
                 </div>
@@ -101,7 +119,7 @@ class BotMonitor extends React.Component {
                             <table style={{width: '100%'}}>
                                 <tbody>
                                     {
-                                        this.state.rows.map((row, idxColom) => {
+                                        this.state.selectedBotDetails.map((row, idxColom) => {
                                             return (
                                                 <tr key={idxColom}>
                                                     {
