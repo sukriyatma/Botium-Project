@@ -9,7 +9,7 @@ export default class MainApp extends Component {
         return (
             <>
                 <SideBarMenu/>
-                <BotMonitor/>
+                <BotMonitor userName={'Sukriyatma'}/>
             </>
         )
     }
