@@ -4,33 +4,20 @@ p {
     padding: 0;
 }
 
-table.table-list, td.table-data {
-    border-collapse: collapse;
-}
-
-td.table-data {
-    border: 1px solid #1F1F2B;
-}
-
-table.table-list {
-    width: 100%;
-    background-color: #14141A;
-}
-
 ::-webkit-scrollbar-track
 {
-	border-radius: 10px;
+	border-radius: 0.5vw;
     
 }
 
 ::-webkit-scrollbar
 {
-	width: 6px;
+	width: 0.333vw;
 }
 
 ::-webkit-scrollbar-thumb
 {
-	border-radius: 10px;
+	border-radius: 0.5vw;
 	background-color: #E6E6E6;
 }
 
