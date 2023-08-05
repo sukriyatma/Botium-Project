@@ -3,7 +3,7 @@
 function CircleRadialGradient(props) {
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="200px" height="100" viewBox="0 100 200 100" fill="none" style={{borderRadius: '0px 0px 2px 0px'}}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="11.1vw" height="5.2vw" viewBox="0 100 200 100" fill="none" style={{borderRadius: '0px 0px 0.1vw 0px'}}>
             
             <defs>
                 <filter id="filter-gradient" x="0.81303" y="-22.187" width="258.374" height="258.374" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">

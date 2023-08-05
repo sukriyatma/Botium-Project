@@ -6,6 +6,7 @@ import ListName from '../../../components/list-name/list-name';
 import DetailBot from '../../../components/detail-bot/detail-bot';
 import SearchBox from '../../../components/SearchBox/SearchBox';
 import Profile from '../../../components/Profile/Profile';
+import ItemCard from '../../../components/ItemCard/ItemCard';
 
 class BotMonitor extends React.Component {  
 
@@ -18,6 +19,7 @@ class BotMonitor extends React.Component {
                 'ONLINE' : { name: "Online", color: "#7FD362", total : 0},
                 'OFFLINE' :{ name: "Offline", color: "#C1C1C1", total : 0},
                 'BAN' : { name: "Banned", color: "#E75858", total : 0}},
+                
             list : [],
             idxSelectedBot : null,
             selectedBotDetails : []
@@ -88,19 +90,23 @@ class BotMonitor extends React.Component {
         this.getData()
     }
 
+    // componentDidUpdate(prevProps, prevState) {
+    //     console.log(prevState.idxSelectedBot)
+    // }
+
     render () {
 
         return (
-            <div style={{ width: '80vw', justifyContent: 'start', display: 'flex', flexDirection: 'column', alignItems: 'center', gridColumn: '3', marginTop: '70px'}}>
+            <div style={{ width: '80%', justifyContent: 'start', display: 'flex', flexDirection: 'column', alignItems: 'center', gridColumn: '3', marginTop: '3.8vw'}}>
 
-                <div style={{display: 'flex', flexDirection: 'row',width: '90%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', width: '90%'}}>
                     <SearchBox/>
                     <Profile userName={this.props.userName}/>
                 </div>
 
-                <p style={{fontFamily: 'Poppins', fontWeight: 500, fontSize: '25px', marginTop: '70px'}}>BOTS Monitor</p>
+                <p style={{fontFamily: 'Poppins', fontWeight: 500, fontSize: '1.4vw', marginTop: '3.9vw', width:'90%', textAlign: 'left'}}>BOTS Monitor</p>
 
-                <div style={{display: 'flex',marginTop: '10px', width: '90%'}} name="status-bot">
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(20vw, 1fr))',marginTop: '0.5vw', width: '90%'}} name="status-bot">
                     {
                         Object.entries(this.state.status).map(([key,value], idxStatus) => {
                                 return <StatusCounter index={idxStatus} id={key} name={value.name} color={value.color} total={value.total} changeListBotByStatusCounter={this.changeListBotByStatusCounter}/>
@@ -108,11 +114,11 @@ class BotMonitor extends React.Component {
                     }
                 </div>
 
-                <div style={{width: '90%', marginTop: '30px'}}>
+                <div style={{width: '90%', marginTop: '1.6vw'}}>
                     <TableList 
                         listData= {
                             this.state.list.map( (r,i) =>
-                                (<ListName type={'bot'} name={r.name} id={i} setOnActive={this.setOnActive} statusColor={this.state.status[r.status].color}/>)
+                                (<ListName type={'bot'} name={r.name} id={i} currentSelectedIdx={this.state.idxSelectedBot} setOnActive={this.setOnActive} statusColor={this.state.status[r.status].color}/>)
                             )
                         }
                         listDataDetails= { 
@@ -125,7 +131,7 @@ class BotMonitor extends React.Component {
                                                     {
                                                         row.map(([key, value], idxItem) => {
                                                             return (
-                                                                <td width={'200'} height={'75'}>
+                                                                <td width={'200px'} height={'75px'}>
                                                                     {
                                                                         key==='status'? <DetailBot key={idxItem} title={key} value={value} statusColor={this.state.status[value].color} />
                                                                         : <DetailBot key={idxItem} title={key} value={value} /> 
@@ -143,6 +149,8 @@ class BotMonitor extends React.Component {
                         }/>
                 </div>
 
+                <ItemCard imgUrl={'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'}/>
+                <ItemCard imgUrl={'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'}/>
             </div>
         )
     }
