@@ -7,3 +7,22 @@
     width: 20vw;
     /* padding-top: 30px; */
 }
+
+.main-menus {
+    display : grid;
+    margin-left: 2vw;
+    margin-top: 2.2vw;
+}
+
+.btn-menu {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 1.1vw;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    max-width: 15vw;
+    align-items: center;
+    margin-bottom: 2vh;
+    cursor: pointer;
+}

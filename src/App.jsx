@@ -1,21 +1,15 @@
 
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+// import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import './App.css'
-import Main from './pages/main/index.jsx'
-import Login from './pages/Login/Login.jsx'
+// import Main from './pages/main/layout.jsx'
+import Route from './routes.jsx'
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Main/>}>
-            <Route path='login' element={<Login/>}/>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Route/>
     </>
   )
 }
