@@ -148,9 +148,6 @@ class BotMonitor extends React.Component {
                             </table>  
                         }/>
                 </div>
-
-                <ItemCard imgUrl={'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'}/>
-                <ItemCard imgUrl={'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'}/>
             </div>
         )
     }
