@@ -1,13 +1,25 @@
 import React from "react";
 import TableList from '../../../components/table-list/table-list';
-import DetailBot from '../../../components/detail-bot/detail-bot';
 import SearchBox from '../../../components/SearchBox/SearchBox';
 import Profile from '../../../components/Profile/Profile';
 import ItemCard from '../../../components/ItemCard/ItemCard';
 import ListName from "../../../components/list-name/list-name";
+import RightSideButton from "../../../components/RightSideButton/rightsidebutton";
 
 export default class WorldMonitor extends React.Component {
 
+    filterItems = { 
+        block: {
+            id: 'block',
+            image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3456/y-offset/160/window-width/32/window-height/32?format=png&fill=cb-20230727150903',
+            filter: (itemId) =>((itemId%2==0))
+        },
+        seed: {
+            id: 'seed',
+            image: 'https://static.wikia.nocookie.net/growtopia/images/9/9c/SeedSprites.png/revision/latest/window-crop/width/16/x-offset/1728/y-offset/80/window-width/16/window-height/16?format=png&fill=cb-20230727150903',
+            filter: (itemId) =>((itemId%2==1))
+        }
+    }
     constructor(props) {
         super(props)
         this.state = {
@@ -17,11 +29,23 @@ export default class WorldMonitor extends React.Component {
         }
 
         this.setOnActive = this.setOnActive.bind(this)
+        this.setFilter = this.setFilter.bind(this)
     }
 
     getData() {
 
         const data = [
+            {
+                name: 'WORLDAUTO1',
+                items: [ 
+                    {
+                        id: 5666,
+                        name: 'Laser Grid',
+                        total: 6,
+                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
+                    }
+                ] 
+            },
             {
                 name: 'WORLDAUTO1',
                 items: [
@@ -30,42 +54,6 @@ export default class WorldMonitor extends React.Component {
                         name: 'Laser Grid',
                         total: 6,
                         image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
-                    },
-                    {
-                        id: 1631,
-                        name: 'World Lock',
-                        total: 34,
-                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
-                    },
-                    {
-                        id: 1631,
-                        name: 'World Lock',
-                        total: 34,
-                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
-                    },
-                    {
-                        id: 1631,
-                        name: 'World Lock',
-                        total: 34,
-                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
-                    },
-                    {
-                        id: 1631,
-                        name: 'World Lock',
-                        total: 34,
-                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
-                    },
-                    {
-                        id: 1631,
-                        name: 'World Lock',
-                        total: 34,
-                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
-                    },
-                    {
-                        id: 1631,
-                        name: 'World Lock',
-                        total: 34,
-                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/3296/y-offset/1024/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
                     }
                 ] 
             }
@@ -91,6 +79,28 @@ export default class WorldMonitor extends React.Component {
             })
             
         })
+    }
+
+    setFilter(id) {
+        const {list, idxSelectedWorld} = this.state
+        const filteredItems = []
+        const selectedWorldDetails = []
+
+        if (idxSelectedWorld==null) return
+        for (let i=0;i<Object.entries(list[idxSelectedWorld].items).length; i++) {
+            const item = list[idxSelectedWorld].items[i]
+            this.filterItems[id].filter(item.id) && filteredItems.push(item)
+        }
+
+        for (let i=0;i<Object.entries(filteredItems).length; i+=2) {
+            const row = Object.entries(filteredItems).slice(i, i+2)
+            selectedWorldDetails.push(row)
+        }
+        
+        this.setState({
+            selectedWorldDetails: selectedWorldDetails
+        })
+        
     }
 
     componentDidMount() {
@@ -119,14 +129,12 @@ export default class WorldMonitor extends React.Component {
                                     {
                                         this.state.selectedWorldDetails.map((row, idxColom) => {
                                             return (
-                                                <tr key={idxColom}>
+                                                <tr key={idxColom} >
                                                     {
                                                         row.map(([key, value], idxItem) => {
                                                             return (
-                                                                <td width={'200px'} height={'75px'} style={{verticalAlign: 'center'}}>
-                                                                    {
-                                                                        <ItemCard key={value.id} itemid={value.id} name={value.name} total={value.total} imgUrl={value.image} />
-                                                                    }
+                                                                <td width={'11vw'} height={'9vw'} style={{padding: '0.83vw'}}>
+                                                                    {<ItemCard key={value.id} itemid={value.id} name={value.name} total={value.total} imgUrl={value.image} />}
                                                                 </td>
                                                             )
                                                         })   
@@ -137,7 +145,13 @@ export default class WorldMonitor extends React.Component {
                                     }
                                 </tbody>
                             </table>  
+                        }
+                        sideFilter={
+                            Object.entries(this.filterItems).map(([key,value]) => {
+                                return <RightSideButton id={key} imageUrl={value.image} onclick={this.setFilter}/>
+                            })
                         }/>
+                        
                 </div>
             </div>
         )
