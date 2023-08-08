@@ -1,0 +1,21 @@
+
+
+.right-side-button {
+    width: 3.16vw;
+    height: 3.16vw; 
+    margin-bottom: 0.61vw; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: #14141A; 
+    border: 0.05vw solid #1F1F2B;
+    border-left: 0px;
+    border-radius: 0px 0.27vw 0.27vw 0px;
+    cursor: pointer;
+}
+
+
+.right-side-button img {
+    width: 2.3vw;
+    height: 2.3vw;
+}

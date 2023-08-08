@@ -8,7 +8,7 @@ import WorldMonitor from "./WorldMonitor/WorldMonitor.jsx";
 
 export default function Layout() {
     
-    const [details, setDetails] = useState('botmonitor')
+    const [details, setDetails] = useState(localStorage.mainmenu || 'botmonitor')
     const sidebarItem = {
         botmonitor : {
             name: 'Bots Monitor',
@@ -21,6 +21,7 @@ export default function Layout() {
     }
 
     const changeDetails = (id) => {
+        localStorage.mainmenu = id
         setDetails(id)
     }
 
