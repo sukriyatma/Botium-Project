@@ -115,7 +115,8 @@ class BotMonitor extends React.Component {
                 </div>
 
                 <div style={{width: '90%', marginTop: '1.6vw'}}>
-                    <TableList 
+                    <TableList
+                        title={'List Bots'} 
                         listData= {
                             this.state.list.map( (r,i) =>
                                 (<ListName type={'bot'} name={r.name} id={i} currentSelectedIdx={this.state.idxSelectedBot} setOnActive={this.setOnActive} statusColor={this.state.status[r.status].color}/>)

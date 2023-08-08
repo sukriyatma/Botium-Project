@@ -6,7 +6,7 @@ export default function TableList(props) {
     
         <>
             <div style={{width: '100%', backgroundColor: '#14141A', borderRadius: '0.8vw', border: '0.05vw solid #1F1F2B'}}>
-                <p style={{height: '5%', paddingLeft: '2vw', padding:'0.5vw', textAlign: 'left', fontFamily: 'Poppins', fontWeight: '600', fontSize: '1vw'}}>List Bots</p>
+                <p style={{height: '5%', paddingLeft: '2vw', padding:'0.5vw', textAlign: 'left', fontFamily: 'Poppins', fontWeight: '600', fontSize: '1vw'}}>{props.title}</p>
                 <div className="table-list-main" style={{display: 'flex', height: '95%'}}>
                     <div className="list-name" style={{width: '35%', height: '100%'}}>
                         <p style={{border: '0.05vw solid #1F1F2B', borderLeft: 'none', fontFamily: 'Poppins', fontWeight: '500',fontSize: '1.1vw'}}>Name</p>
