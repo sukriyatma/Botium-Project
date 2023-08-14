@@ -23,7 +23,7 @@ export default function TableList(props) {
                             {
                                 props.listDataMoreDetails && (
                                     <>
-                                        <p style={{textAlign: 'left', width: '90%', marginBottom: '5px', fontFamily: 'Poppins', fontWeight: 700, color: '#1F1F2B'}}>Inventory</p>
+                                        <p style={{textAlign: 'left', width: '90%', marginBottom: '0.27vw', fontFamily: 'Poppins', fontWeight: 700, color: '#1F1F2B'}}>Inventory</p>
                                         <div style={{width: '95%',border: '0.05vw solid #1F1F2B', borderRadius: '0.83vw'}}>
                                             {
                                                 props.listDataMoreDetails
