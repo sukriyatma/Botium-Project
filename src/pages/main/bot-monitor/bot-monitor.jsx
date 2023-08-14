@@ -22,7 +22,8 @@ class BotMonitor extends React.Component {
                 
             list : [],
             idxSelectedBot : null,
-            selectedBotDetails : []
+            selectedBotGeneral : [],
+            selectedBotInventory : []
         }
 
         this.setOnActive = this.setOnActive.bind(this)
@@ -33,13 +34,33 @@ class BotMonitor extends React.Component {
     getData() {
 
         const data = [
-            {name: 'BotAsu1', status: 'ONLINE', world2: 'world1', world3: 'world1', world4: 'world1', world5: 'world1', world6: 'world1', world7: 'world1'},
-            {name: 'BotPemadam5', status: 'OFFLINE', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-            {name: 'Botasli', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-            {name: 'BotPemadam5', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-            {name: 'Botasli', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-            {name: 'BotPemadam5', status: 'BAN', world2: 'world111', world3: 'world1', world4: 'world1', world5: 'world1'},
-            {name: 'BotOnline', status: 'ONLINE', world2: 'world1', world3: 'world1', world4: 'world1'},
+            {
+                general : {
+                    name: 'BotAsu1', status: 'ONLINE', world2: 'world1', world3: 'world1', world4: 'world1', world5: 'world1', world6: 'world1', world7: 'world1'
+                },
+                inventory : [
+                    {
+                        id: 5666,
+                        name: 'Laser Grid',
+                        total: 6,
+                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
+                    },
+                    {
+                        id: 5666,
+                        name: 'Laser Grid',
+                        total: 6,
+                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
+                    }
+                ]
+            },
+            {
+                general : {
+                    name: 'BotAsu2', status: 'OFFLINE', world2: 'world1', world3: 'world1', world4: 'world1', world5: 'world1', world6: 'world1', world7: 'world1'
+                },
+                inventory : [
+                    
+                ]
+            },
         ]
 
         this.listBot = data
@@ -50,7 +71,7 @@ class BotMonitor extends React.Component {
             const stat = status
             Object.values(stat).forEach(v=>(v.total=0))
 
-            list.forEach(bot => (stat[bot.status].total++ ))
+            list.forEach(bot => (stat[bot.general.status].total++ ))
             this.setState({status: stat})
         })
     }
@@ -61,15 +82,22 @@ class BotMonitor extends React.Component {
         }, () => {
 
             const {list, idxSelectedBot} = this.state
-            const selectedBotDetails = []
+            const selectedBotGeneral = []
+            const selectedBotInventory = []
 
-            for (let i=0;i<Object.entries(list[idxSelectedBot]).length; i+=3) {
-                const row = Object.entries(list[idxSelectedBot]).slice(i, i+3)
-                selectedBotDetails.push(row)
+            for (let i=0;i<Object.entries(list[idxSelectedBot].general).length; i+=3) {
+                const row = Object.entries(list[idxSelectedBot].general).slice(i, i+3)
+                selectedBotGeneral.push(row)
+            }
+
+            for (let i=0;i<list[idxSelectedBot].inventory.length; i+=2) {
+                const row = list[idxSelectedBot].inventory.slice(i, i+2)
+                selectedBotInventory.push(row)
             }
             
             this.setState({
-                selectedBotDetails: selectedBotDetails
+                selectedBotGeneral: selectedBotGeneral,
+                selectedBotInventory: selectedBotInventory
             })
             
         })
@@ -119,14 +147,14 @@ class BotMonitor extends React.Component {
                         title={'List Bots'} 
                         listData= {
                             this.state.list.map( (r,i) =>
-                                (<ListName type={'bot'} name={r.name} id={i} currentSelectedIdx={this.state.idxSelectedBot} setOnActive={this.setOnActive} statusColor={this.state.status[r.status].color}/>)
+                                (<ListName type={'bot'} name={r.general.name} id={i} currentSelectedIdx={this.state.idxSelectedBot} setOnActive={this.setOnActive} statusColor={this.state.status[r.general.status].color}/>)
                             )
                         }
                         listDataDetails= { 
                             <table style={{width: '100%'}}>
                                 <tbody>
                                     {
-                                        this.state.selectedBotDetails.map((row, idxColom) => {
+                                        this.state.selectedBotGeneral.map((row, idxColom) => {
                                             return (
                                                 <tr key={idxColom}>
                                                     {
@@ -147,6 +175,28 @@ class BotMonitor extends React.Component {
                                     }
                                 </tbody>
                             </table>  
+                        }
+                        listDataMoreDetails= {
+                            this.state.selectedBotInventory.length > 0 &&
+                            <table style={{width: '100%'}}>
+                                <tbody>
+                                    {
+                                        this.state.selectedBotInventory.map((row, idxColom) => {
+                                            return <tr>
+                                                {
+                                                    row.map((value, idxItem) => {
+                                                        return (
+                                                            <td width={'11vw'} height={'9vw'} style={{padding: '0.83vw'}}>
+                                                                    {<ItemCard key={value.id} itemid={value.id} name={value.name} total={value.total} imgUrl={value.image} />}
+                                                            </td>
+                                                        )
+                                                    })
+                                                }    
+                                            </tr>
+                                        })
+                                    }
+                                </tbody>
+                            </table>
                         }/>
                 </div>
             </div>

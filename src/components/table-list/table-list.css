@@ -13,6 +13,7 @@ p {
 ::-webkit-scrollbar
 {
 	width: 0.333vw;
+	height: 0.333vw;
 }
 
 ::-webkit-scrollbar-thumb
