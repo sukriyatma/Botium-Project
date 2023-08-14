@@ -18,8 +18,20 @@ export default function TableList(props) {
 
                     <div className="list-details" style={{width: '65%', }}>
                         <p style={{borderTop: '0.05vw solid #1F1F2B', borderBottom:'0.05vw solid #1F1F2B', fontFamily: 'Poppins', fontWeight: '500', fontSize: '1.1vw'}}>Details</p>
-                        <div className="list-data-details" style={{ height: '11.66vw', overflow: 'auto'}}>
+                        <div className="list-data-details" style={{ height: '11.66vw', overflow: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             { props.listDataDetails }
+                            {
+                                props.listDataMoreDetails && (
+                                    <>
+                                        <p style={{textAlign: 'left', width: '90%', marginBottom: '5px', fontFamily: 'Poppins', fontWeight: 700, color: '#1F1F2B'}}>Inventory</p>
+                                        <div style={{width: '95%',border: '0.05vw solid #1F1F2B', borderRadius: '0.83vw'}}>
+                                            {
+                                                props.listDataMoreDetails
+                                            }
+                                        </div>
+                                    </>
+                                )
+                            }
                         </div>
                     </div>
 
