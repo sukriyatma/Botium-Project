@@ -1,12 +1,12 @@
 
 import React from 'react';
-import StatusCounter from '../../../components/status-counter/status-counter';
-import TableList from '../../../components/table-list/table-list';
-import ListName from '../../../components/list-name/list-name';
-import DetailBot from '../../../components/detail-bot/detail-bot';
-import SearchBox from '../../../components/SearchBox/SearchBox';
-import Profile from '../../../components/Profile/Profile';
-import ItemCard from '../../../components/ItemCard/ItemCard';
+import StatusCounter from '../../../components/statuscounter/StatusCounter';
+import TableList from '../../../components/tablelist/TableList';
+import ListName from '../../../components/listname/ListName';
+import DetailBot from '../../../components/detailbot/DetailBot';
+import SearchBox from '../../../components/searchbox/SearchBox';
+import Profile from '../../../components/profile/Profile';
+import ItemCard from '../../../components/itemcard/ItemCard';
 
 class BotMonitor extends React.Component {  
 

@@ -1,10 +1,10 @@
 import React from "react";
-import TableList from '../../../components/table-list/table-list';
-import SearchBox from '../../../components/SearchBox/SearchBox';
-import Profile from '../../../components/Profile/Profile';
-import ItemCard from '../../../components/ItemCard/ItemCard';
-import ListName from "../../../components/list-name/list-name";
-import RightSideButton from "../../../components/RightSideButton/rightsidebutton";
+import TableList from '../../../components/tablelist/TableList';
+import SearchBox from '../../../components/searchbox/SearchBox';
+import Profile from '../../../components/profile/Profile';
+import ItemCard from '../../../components/itemcard/ItemCard';
+import ListName from "../../../components/listname/ListName";
+import RightSideButton from "../../../components/rightsidebutton/RightSideButton";
 
 export default class WorldMonitor extends React.Component {
 
@@ -51,6 +51,12 @@ export default class WorldMonitor extends React.Component {
                 items: [
                     {
                         id: 5666,
+                        name: 'Laser Grid',
+                        total: 6,
+                        image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
+                    },
+                    {
+                        id: 5667,
                         name: 'Laser Grid',
                         total: 6,
                         image: 'https://static.wikia.nocookie.net/growtopia/images/8/8f/ItemSprites.png/revision/latest/window-crop/width/32/x-offset/2304/y-offset/544/window-width/32/window-height/32?format=png&fill=cb-20230727150903'
