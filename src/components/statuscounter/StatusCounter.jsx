@@ -1,5 +1,5 @@
 
-import CircleRadialGradient from "../circle-radial-gradient/circle-radial-gradient";
+import CircleRadialGradient from "../circleradialgradient/CircleRadialGradient";
 
 function StatusCounter({index, id, color, total, name, changeListBotByStatusCounter}) {
 

@@ -1,5 +1,5 @@
-import './table-list.css'
-import RightSideButton from '../RightSideButton/rightsidebutton'
+import './TableList.css'
+import RightSideButton from '../rightsidebutton/RightSideButton'
 
 export default function TableList(props) {
 

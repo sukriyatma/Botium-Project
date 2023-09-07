@@ -3,8 +3,8 @@
 import { useState } from "react";
 import SideBarMenu from "../../components/sidebarmenu/sidebar.jsx";
 // import ChildRoutes from '../../routes.jsx'
-import BotMonitor from "./bot-monitor/bot-monitor.jsx";
-import WorldMonitor from "./WorldMonitor/WorldMonitor.jsx";
+import BotMonitor from "./botmonitor/BotMonitor.jsx";
+import WorldMonitor from "./worldmonitor/WorldMonitor.jsx";
 
 export default function Layout() {
     
